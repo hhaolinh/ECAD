@@ -7,6 +7,12 @@ module updowncounter
    );
 
    // insert your code here
-   assign count = 0;
+   always @(posedge clk) begin
+      if (rst)
+        count <= 0;
+      else
+        count <= count + (up ? 1 : -1);
+   end
+   
 
 endmodule
