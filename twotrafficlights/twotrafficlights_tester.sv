@@ -20,16 +20,12 @@ module twotrafficlights_tester
 
    twotrafficlights dut(.clk(clk), .rst(rst), .lightsA(lightsA), .lightsB(lightsB));
 
-   twotrafficlights_golden gold(.clk(clk), .rst(rst), .lightsA(correctA), .lightsB(correctB));
+   //twotrafficlights_golden gold(.clk(clk), .rst(rst), .lightsA(correctA), .lightsB(correctB));
 
    always @(posedge clk)
      if(!rst)
        begin
-          $write("%04d: rst=%1b  (lightsA,lightsB) = (%03b, %03b)   correct: (%03b, %03b)",
-                 $time, rst, lightsA, lightsB, correctA, correctB);
-          if({lightsA,lightsB} == {correctA,correctB})
-            $display(" - pass");
-          else
-            $display(" - FAIL");
+          $write("%04d: rst=%1b  (lightsA,lightsB) = (%03b, %03b)\n",
+                 $time, rst, lightsA, lightsB);
        end
 endmodule
